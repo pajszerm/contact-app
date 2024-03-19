@@ -25,5 +25,5 @@ public class Address {
     private int postalCode;
 
     @ManyToOne
-    private Contact contact;
+    private UserInfo user;
 }

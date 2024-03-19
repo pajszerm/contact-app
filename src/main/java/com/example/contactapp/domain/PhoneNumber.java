@@ -19,5 +19,5 @@ public class PhoneNumber {
     private int number;
 
     @ManyToOne
-    private Contact contact;
+    private UserInfo user;
 }

@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,6 +23,21 @@ public class UserInfo {
 
     private String username;
 
+    private String name;
+
+    private String mothersName;
+
+    private LocalDate birthDate;
+
+    private int tajNumber;
+
+    private int taxNumber;
+
+    private String email;
+
     @OneToMany(mappedBy = "user")
-    private List<Contact> contacts;
+    private List<Address> addresses = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<PhoneNumber> phoneNumbers = new ArrayList<>();
 }
