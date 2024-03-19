@@ -1,6 +1,6 @@
 <div class="container w-75 shadow my-3 p-5 rounded">
   <h1 class="mb-3 my-3">Contact Details</h1>
-  <form (ngSubmit)="saveUser()" [formGroup]="userForm">
+  <form (ngSubmit)="saveUserForm()" [formGroup]="userForm">
     <div class="mb-3">
       <label
         class="form-label"
@@ -106,7 +106,7 @@
     </div>
 
     <div formArrayName="phoneNumbers">
-      <div *ngFor="let phoneNumber of phoneNumbers; let i=index" class="mb-3">
+      <div *ngFor="let phoneNumber of phoneNumbers; let i=index" class="mb-3" [formGroupName]="i">
         <label class="form-label">Phone Number {{ i + 1 }}:</label>
         <input class="form-control mb-3" formControlName="phoneNumber">
         <button type="button" class="btn btn-danger" (click)="removePhoneNumber(i)">Remove</button>
@@ -115,7 +115,7 @@
     <button type="button" class="btn btn-secondary mb-3" (click)="addPhoneNumber()">Add Phone Number</button>
 
     <div formArrayName="addresses" class="mb-3">
-      <div *ngFor="let address of addresses; let i=index" class="mb-3">
+      <div *ngFor="let address of addresses; let i=index" class="mb-3" [formGroupName]="i">
         <h4>Address {{ i + 1 }}:</h4>
         <div class="mb-3">
           <label class="form-label">City:</label>

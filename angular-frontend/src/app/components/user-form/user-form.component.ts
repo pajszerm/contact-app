@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
@@ -13,7 +13,7 @@ export class UserFormComponent implements OnInit {
   userForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
-              private router:Router,
+              private router: Router,
               private userService: UserService) {
     this.userForm = formBuilder.group({
       username: [''],
@@ -31,12 +31,26 @@ export class UserFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  saveUser() {
-
+  saveUserForm() {
+    const data = this.userForm.value;
+    console.log(data);
+    this.userService.saveUserForm(data).subscribe({
+      next: value => {
+      },
+      error: err => {
+        console.warn(err);
+      },
+      complete: () => {
+        this.userForm.reset();
+        this.router.navigate(['user-list'])
+      }
+    })
   }
 
   addPhoneNumber() {
-    (this.userForm.get('phoneNumbers') as FormArray).push(this.formBuilder.control(''));
+    (this.userForm.get('phoneNumbers') as FormArray).push(this.formBuilder.group({
+      phoneNumber: ['']
+    }));
   }
 
   addAddress() {
