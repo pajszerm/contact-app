@@ -14,7 +14,7 @@ import {HttpClientModule} from "@angular/common/http";
     AppComponent,
     UserFormComponent,
     NavbarComponent,
-    UserListComponent
+    UserListComponent,
   ],
   imports: [
     BrowserModule,

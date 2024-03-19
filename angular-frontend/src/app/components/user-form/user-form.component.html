@@ -1,1 +1,145 @@
-<p>user-form works!</p>
+<div class="container w-75 shadow my-3 p-5 rounded">
+  <h1 class="mb-3 my-3">Contact Details</h1>
+  <form (ngSubmit)="saveUser()" [formGroup]="userForm">
+    <div class="mb-3">
+      <label
+        class="form-label"
+        for="username"
+      >Username:</label>
+
+      <input
+        class="form-control"
+        formControlName="username"
+        id="username"
+        placeholder="Username"
+        type="text"
+      >
+    </div>
+
+    <div class="mb-3">
+      <label
+        class="form-label"
+        for="name"
+      >Name:</label>
+
+      <input
+        class="form-control"
+        formControlName="name"
+        id="name"
+        placeholder="Username"
+        type="text"
+      >
+    </div>
+    <div class="mb-3">
+      <label
+        class="form-label"
+        for="mothersName"
+      >Mother's name:</label>
+
+      <input
+        class="form-control"
+        formControlName="mothersName"
+        id="mothersName"
+        placeholder="Mother's name"
+        type="text"
+      >
+    </div>
+
+    <div class="mb-3">
+      <label
+        class="form-label"
+        for="email"
+      >E-mail address:</label>
+
+      <input
+        class="form-control"
+        formControlName="email"
+        id="email"
+        placeholder="E-mail address"
+        type="text"
+      >
+    </div>
+
+    <div class="mb-3">
+      <label
+        class="form-label"
+        for="birthDate"
+      >Birth date:</label>
+
+      <input
+        class="form-control"
+        formControlName="birthDate"
+        id="birthDate"
+        placeholder="E-mail address"
+        type="date"
+      >
+    </div>
+
+    <div class="mb-3">
+      <label
+        class="form-label"
+        for="tajNumber"
+      >TAJ number:</label>
+
+      <input
+        class="form-control"
+        formControlName="tajNumber"
+        id="tajNumber"
+        placeholder="TAJ number"
+        type="text"
+      >
+    </div>
+
+    <div class="mb-3">
+      <label
+        class="form-label"
+        for="taxNumber"
+      >Tax number:</label>
+
+      <input
+        class="form-control"
+        formControlName="taxNumber"
+        id="taxNumber"
+        placeholder="Tax number"
+        type="text"
+      >
+    </div>
+
+    <div formArrayName="phoneNumbers">
+      <div *ngFor="let phoneNumber of phoneNumbers; let i=index" class="mb-3">
+        <label class="form-label">Phone Number {{ i + 1 }}:</label>
+        <input class="form-control mb-3" formControlName="phoneNumber">
+        <button type="button" class="btn btn-danger" (click)="removePhoneNumber(i)">Remove</button>
+      </div>
+    </div>
+    <button type="button" class="btn btn-secondary mb-3" (click)="addPhoneNumber()">Add Phone Number</button>
+
+    <div formArrayName="addresses" class="mb-3">
+      <div *ngFor="let address of addresses; let i=index" class="mb-3">
+        <h4>Address {{ i + 1 }}:</h4>
+        <div class="mb-3">
+          <label class="form-label">City:</label>
+          <input class="form-control" formControlName="cityName">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Street:</label>
+          <input class="form-control" formControlName="streetName">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">House number:</label>
+          <input class="form-control" formControlName="houseNumber">
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Postal code:</label>
+          <input class="form-control" formControlName="postalCode">
+        </div>
+        <button type="button" class="btn btn-danger mb-3" (click)="removeAddress(i)">Remove</button>
+      </div>
+    </div>
+    <button type="button" class="btn btn-secondary mb-3" (click)="addAddress()">Add Address</button>
+    <div>
+    <button [disabled]="userForm.invalid" class="btn btn-primary" type="submit">Submit</button>
+    </div>
+  </form>
+</div>
+

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
+import {Router} from "@angular/router";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-user-form',
@@ -7,9 +10,57 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserFormComponent implements OnInit {
 
-  constructor() { }
+  userForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder,
+              private router:Router,
+              private userService: UserService) {
+    this.userForm = formBuilder.group({
+      username: [''],
+      name: [''],
+      mothersName: [''],
+      email: [''],
+      birthDate: [null],
+      tajNumber: [''],
+      taxNumber: [''],
+      phoneNumbers: this.formBuilder.array([]),
+      addresses: this.formBuilder.array([])
+    })
+  }
 
   ngOnInit(): void {
   }
 
+  saveUser() {
+
+  }
+
+  addPhoneNumber() {
+    (this.userForm.get('phoneNumbers') as FormArray).push(this.formBuilder.control(''));
+  }
+
+  addAddress() {
+    (this.userForm.get('addresses') as FormArray).push(this.formBuilder.group({
+      cityName: [''],
+      streetName: [''],
+      houseNumber: [''],
+      postalCode: ['']
+    }));
+  }
+
+  removePhoneNumber(index: number) {
+    (this.userForm.get('phoneNumbers') as FormArray).removeAt(index);
+  }
+
+  removeAddress(index: number) {
+    (this.userForm.get('addresses') as FormArray).removeAt(index);
+  }
+
+  get phoneNumbers() {
+    return (this.userForm.get('phoneNumbers') as FormArray).controls;
+  }
+
+  get addresses() {
+    return (this.userForm.get('addresses') as FormArray).controls;
+  }
 }
