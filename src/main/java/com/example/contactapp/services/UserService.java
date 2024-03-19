@@ -38,6 +38,16 @@ public class UserService {
         return userToFind != null;
     }
 
+    public boolean checkTajNumberExists(String tajNumber) {
+        UserInfo userToFind = userRepository.findUserByTajNumber(tajNumber);
+        return userToFind != null;
+    }
+
+    public boolean checkTaxNumberExists(String taxNumber) {
+        UserInfo userToFind = userRepository.findUserByTaxNumber(taxNumber);
+        return userToFind != null;
+    }
+
     public boolean createNewUserInfo(CreateUserInfoDto createUserInfoDto) {
         UserInfo userInfo = mapCreateUserInfoDtoToUserInfo(createUserInfoDto);
         userInfo = userRepository.save(userInfo);
@@ -64,4 +74,7 @@ public class UserService {
         userInfo.setTaxNumber(createUserInfoDto.getTaxNumber());
         return userInfo;
     }
+
+
+
 }
