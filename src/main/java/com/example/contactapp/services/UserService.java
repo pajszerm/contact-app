@@ -38,7 +38,7 @@ public class UserService {
         return userToFind != null;
     }
 
-    public boolean createNewContact(CreateUserInfoDto createUserInfoDto) {
+    public boolean createNewUserInfo(CreateUserInfoDto createUserInfoDto) {
         UserInfo userInfo = mapCreateUserInfoDtoToUserInfo(createUserInfoDto);
         userInfo = userRepository.save(userInfo);
 
