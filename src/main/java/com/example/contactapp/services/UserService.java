@@ -50,6 +50,8 @@ public class UserService {
         for (CreatePhoneNumberDto phoneNumberDto : createUserInfoDto.getPhoneNumberDTOs()) {
             phoneNumberService.savePhoneNumberForUser(phoneNumberDto, userInfo);
         }
+
+        return userInfo.getId() != null;
     }
 
     private UserInfo mapCreateUserInfoDtoToUserInfo(CreateUserInfoDto createUserInfoDto) {
