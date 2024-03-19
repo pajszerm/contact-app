@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -23,5 +24,8 @@ public class CreateUserInfoDto {
 
     private String email;
 
+    private List<CreateAddressDto> addressDTOs;
+
+    private List<CreatePhoneNumberDto> phoneNumberDTOs;
 
 }
