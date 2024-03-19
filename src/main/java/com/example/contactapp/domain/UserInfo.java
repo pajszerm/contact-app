@@ -28,9 +28,9 @@ public class UserInfo {
 
     private LocalDate birthDate;
 
-    private int tajNumber;
+    private Integer tajNumber;
 
-    private int taxNumber;
+    private Integer taxNumber;
 
     private String email;
 

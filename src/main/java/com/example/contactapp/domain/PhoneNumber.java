@@ -16,7 +16,7 @@ public class PhoneNumber {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int number;
+    private Integer number;
 
     @ManyToOne
     private UserInfo user;
