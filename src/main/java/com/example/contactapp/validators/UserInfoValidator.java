@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import java.time.LocalDate;
+
 @Component
 public class UserInfoValidator implements Validator {
 
@@ -40,7 +42,7 @@ public class UserInfoValidator implements Validator {
         if (createUserInfoDto.getMothersName() == null || createUserInfoDto.getMothersName().isBlank()) {
             errors.rejectValue("mothersName", "mothersName.is.invalid");
         }
-        if (createUserInfoDto.getBirthDate() == null) {
+        if (createUserInfoDto.getBirthDate() == null || createUserInfoDto.getBirthDate().isAfter(LocalDate.now())) {
             errors.rejectValue("birthDate", "birth.date.is.invalid");
         }
         if (createUserInfoDto.getTajNumber() == null) {
