@@ -1,7 +1,6 @@
 package com.example.contactapp.validators;
 
 import com.example.contactapp.domain.dto.incoming.CreateUserInfoDto;
-import com.example.contactapp.services.AddressService;
 import com.example.contactapp.services.PhoneNumberService;
 import com.example.contactapp.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +13,12 @@ public class UserInfoValidator implements Validator {
 
     private UserService userService;
 
+    private PhoneNumberService phoneNumberService;
+
     @Autowired
-    public UserInfoValidator(UserService userService) {
+    public UserInfoValidator(UserService userService, PhoneNumberService phoneNumberService) {
         this.userService = userService;
+        this.phoneNumberService = phoneNumberService;
     }
 
     @Override
@@ -60,6 +62,9 @@ public class UserInfoValidator implements Validator {
         if (createUserInfoDto.getPhoneNumberDTOs().isEmpty()
                 && (createUserInfoDto.getEmail() == null || createUserInfoDto.getEmail().isBlank())) {
             errors.rejectValue("phoneNumber", "phoneNumber.is.invalid");
+        }
+        if (phoneNumberService.checkPhoneNumbersExist(createUserInfoDto.getPhoneNumberDTOs())) {
+            errors.rejectValue("phoneNumber", "phone.number.is.already.exists");
         }
     }
 }
