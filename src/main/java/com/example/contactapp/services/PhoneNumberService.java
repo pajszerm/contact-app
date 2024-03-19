@@ -1,6 +1,7 @@
 package com.example.contactapp.services;
 
 import com.example.contactapp.domain.PhoneNumber;
+import com.example.contactapp.domain.UserInfo;
 import com.example.contactapp.domain.dto.incoming.CreatePhoneNumberDto;
 import com.example.contactapp.repositories.PhoneNumberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,18 @@ public class PhoneNumberService {
             }
         }
         return false;
+    }
+
+    public void savePhoneNumberForUser(CreatePhoneNumberDto phoneNumberDto, UserInfo userInfo) {
+        PhoneNumber phoneNumberToSave = mapCreatePhoneNumberDtoToPhoneNumber(phoneNumberDto);
+        phoneNumberToSave.setUser(userInfo);
+        phoneNumberRepository.save(phoneNumberToSave);
+    }
+
+    private PhoneNumber mapCreatePhoneNumberDtoToPhoneNumber(CreatePhoneNumberDto phoneNumberDto) {
+        PhoneNumber phoneNumber = new PhoneNumber();
+        phoneNumber.setNumber(phoneNumberDto.getPhoneNumber());
+        return phoneNumber;
     }
 }
 

@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreateAddressDto {
 
-    private Long userId;
-
     private String cityName;
 
     private String streetName;

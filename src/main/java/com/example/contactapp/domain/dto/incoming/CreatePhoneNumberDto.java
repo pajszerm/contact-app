@@ -7,7 +7,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreatePhoneNumberDto {
 
-    private Long userId;
-
     private Integer phoneNumber;
 }
