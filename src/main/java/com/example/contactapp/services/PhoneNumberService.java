@@ -14,7 +14,7 @@ import java.util.List;
 @Transactional
 public class PhoneNumberService {
 
-    private PhoneNumberRepository phoneNumberRepository;
+    private final PhoneNumberRepository phoneNumberRepository;
 
     @Autowired
     public PhoneNumberService(PhoneNumberRepository phoneNumberRepository) {

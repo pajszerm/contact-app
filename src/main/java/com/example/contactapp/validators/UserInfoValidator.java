@@ -13,9 +13,9 @@ import java.time.LocalDate;
 @Component
 public class UserInfoValidator implements Validator {
 
-    private UserService userService;
+    private final UserService userService;
 
-    private PhoneNumberService phoneNumberService;
+    private final PhoneNumberService phoneNumberService;
 
     @Autowired
     public UserInfoValidator(UserService userService, PhoneNumberService phoneNumberService) {

@@ -1,8 +1,6 @@
 package com.example.contactapp.controllers;
 
 import com.example.contactapp.domain.dto.incoming.CreateUserInfoDto;
-import com.example.contactapp.services.AddressService;
-import com.example.contactapp.services.PhoneNumberService;
 import com.example.contactapp.services.UserService;
 import com.example.contactapp.validators.UserInfoValidator;
 import jakarta.validation.Valid;
@@ -19,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/api/users")
 public class UserController {
 
-    private UserService userService;
-    private UserInfoValidator userInfoValidator;
+    private final UserService userService;
+    private final UserInfoValidator userInfoValidator;
 
     public UserController(UserService userService, UserInfoValidator userInfoValidator) {
         this.userService = userService;

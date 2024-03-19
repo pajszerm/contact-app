@@ -1,6 +1,5 @@
 package com.example.contactapp.services;
 
-import com.example.contactapp.domain.Address;
 import com.example.contactapp.domain.UserInfo;
 import com.example.contactapp.domain.dto.incoming.CreateAddressDto;
 import com.example.contactapp.domain.dto.incoming.CreatePhoneNumberDto;
@@ -14,11 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    private AddressService addressService;
+    private final AddressService addressService;
 
-    private PhoneNumberService phoneNumberService;
+    private final PhoneNumberService phoneNumberService;
 
     @Autowired
     public UserService(UserRepository userRepository,
