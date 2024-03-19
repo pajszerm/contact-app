@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/contact-app?serverTimezone=UTC&ssl-mode=REQUIRED
+    url: jdbc:postgresql://localhost:5432/contact-app?currentSchema=contact_app&serverTimezone=UTC&ssl-mode=REQUIRED
     username: postgres
     password: password
     driver-class-name: org.postgresql.Driver
