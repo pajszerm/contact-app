@@ -20,9 +20,9 @@ public class Address {
 
     private String streetName;
 
-    private Integer houseNumber;
+    private String houseNumber;
 
-    private Integer postalCode;
+    private String postalCode;
 
     @ManyToOne
     private UserInfo user;

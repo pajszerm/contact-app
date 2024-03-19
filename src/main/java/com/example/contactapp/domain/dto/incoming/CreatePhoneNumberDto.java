@@ -7,5 +7,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CreatePhoneNumberDto {
 
-    private Integer phoneNumber;
+    private String phoneNumber;
 }

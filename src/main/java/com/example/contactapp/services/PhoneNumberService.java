@@ -23,7 +23,8 @@ public class PhoneNumberService {
 
     public boolean checkPhoneNumbersExist(List<CreatePhoneNumberDto> phoneNumberDTOs) {
         for (CreatePhoneNumberDto phoneNumberDTO : phoneNumberDTOs) {
-            PhoneNumber phoneNumberToFind = phoneNumberRepository.findPhoneNumberByNumber(phoneNumberDTO.getPhoneNumber());
+            String phoneNumber = phoneNumberDTO.getPhoneNumber();
+            PhoneNumber phoneNumberToFind = phoneNumberRepository.findPhoneNumberByNumber(phoneNumber);
             if (phoneNumberToFind != null) {
                 return true;
             }

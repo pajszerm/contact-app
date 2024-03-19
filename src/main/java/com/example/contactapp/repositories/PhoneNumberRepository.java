@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PhoneNumberRepository extends JpaRepository<PhoneNumber, Long> {
 
-    @Query("SELECT p FROM PhoneNumber p WHERE p.number =: phoneNumber")
-    PhoneNumber findPhoneNumberByNumber(@Param("phoneNumber")Integer phoneNumber);
+    @Query("SELECT p FROM PhoneNumber p WHERE p.number = :phoneNumber")
+    PhoneNumber findPhoneNumberByNumber(@Param("phoneNumber")String phoneNumber);
 }
