@@ -31,7 +31,8 @@ export class UserFormComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   saveUserForm() {
     const formData: UserFormModel = this.userForm.value;
@@ -48,7 +49,7 @@ export class UserFormComponent implements OnInit {
 
   addPhoneNumber() {
     (this.userForm.get('phoneNumbers') as FormArray).push(this.formBuilder.group({
-      phoneNumber: ['', [Validators.required, this.onlyNumbersValidator()]]
+      phoneNumber: ['', [Validators.required, this.phoneNumberValidator()]]
     }));
   }
 
@@ -56,7 +57,7 @@ export class UserFormComponent implements OnInit {
     (this.userForm.get('addresses') as FormArray).push(this.formBuilder.group({
       cityName: ['', [Validators.required, this.lettersAndSpacesValidator()]],
       streetName: ['', [Validators.required, this.lettersAndSpacesValidator()]],
-      houseNumber: ['', Validators.required, [this.onlyNumbersValidator()]],
+      houseNumber: ['', [Validators.required, this.onlyNumbersValidator()]],
       postalCode: ['', [Validators.required, this.postalCodeValidator()]]
     }));
   }
@@ -82,12 +83,12 @@ export class UserFormComponent implements OnInit {
     return addresses.length > 0;
   }
 
-   tajNumberValidator(): ValidatorFn {
+  tajNumberValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const value = control.value;
       const isNumeric = /^\d+$/.test(value);
       const isValidLength = value && value.length === 9;
-      return isNumeric && isValidLength ? null : { 'invalidTajNumber': true };
+      return isNumeric && isValidLength ? null : {'invalidTajNumber': true};
     };
   }
 
@@ -116,10 +117,19 @@ export class UserFormComponent implements OnInit {
     };
   }
 
+  phoneNumberValidator(maxLength: number = 15): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const value = control.value;
+      const isValid = /^\d{1,15}$/.test(value); // Check if value contains only numbers and length is at most 15
+
+      return isValid ? null : {'invalidNumber': {value}};
+    };
+  }
+
   lettersAndSpacesValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const value = control.value;
-      const isValid = /^[a-zA-Z\s]*$/.test(value); // Check if value contains only letters and spaces
+      const isValid = /^[a-zA-ZáÁéÉíÍóÓöÖőŐúÚüÜűŰ\s]*$/.test(value);
 
       return isValid ? null : {'invalidLettersAndSpaces': {value}};
     };

@@ -209,11 +209,11 @@
           [ngClass]="{'text-danger': phoneNumber.get('phoneNumber')?.invalid && phoneNumber.get('phoneNumber')?.touched}"
           class="form-label">Phone Number {{ i + 1 }}:</label>
         <input
-          [ngClass]="{'form-control': true, 'mb-3': true, 'is-invalid': phoneNumber.get('phoneNumber')?.invalid
+          [ngClass]="{'form-control': true, 'is-invalid': phoneNumber.get('phoneNumber')?.invalid
           && phoneNumber.get('phoneNumber')?.touched}"
           class="form-control mb-3" formControlName="phoneNumber">
         <small *ngIf="phoneNumber.get('phoneNumber')?.invalid && phoneNumber.get('phoneNumber')?.touched" class="text-danger">
-          Please enter a valid phone number!
+          Please enter your phone number! (max 15 digits)
         </small>
         <div>
         <button type="button" class="btn btn-danger" (click)="removePhoneNumber(i)">Remove</button>
@@ -314,7 +314,7 @@
     </div>
     <button type="button" class="btn btn-secondary mb-3" (click)="addAddress()">Add Address</button>
     <div>
-      <button [disabled]="userForm.invalid || !hasAddress()" class="btn btn-primary" type="submit">Submit</button>
+      <button [disabled]="userForm.invalid || !hasAddress()" class="btn btn-primary my-3" type="submit">Submit</button>
     </div>
   </form>
 </div>
