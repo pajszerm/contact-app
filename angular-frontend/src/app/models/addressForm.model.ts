@@ -1,6 +1,6 @@
 export interface AddressFormModel {
-  cityName: String,
-  streetName: String,
-  houseNumber: String,
-  postalCode: String
+  cityName: string,
+  streetName: string,
+  houseNumber: string,
+  postalCode: string
 }

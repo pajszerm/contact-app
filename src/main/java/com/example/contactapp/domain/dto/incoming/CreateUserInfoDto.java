@@ -24,8 +24,8 @@ public class CreateUserInfoDto {
 
     private String email;
 
-    private List<CreateAddressDto> addressDTOs;
+    private List<CreateAddressDto> addresses;
 
-    private List<CreatePhoneNumberDto> phoneNumberDTOs;
+    private List<CreatePhoneNumberDto> phoneNumbers;
 
 }

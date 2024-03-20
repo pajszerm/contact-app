@@ -52,11 +52,11 @@ public class UserService {
         UserInfo userInfo = mapCreateUserInfoDtoToUserInfo(createUserInfoDto);
         userInfo = userRepository.save(userInfo);
 
-        for (CreateAddressDto addressDto : createUserInfoDto.getAddressDTOs()) {
+        for (CreateAddressDto addressDto : createUserInfoDto.getAddresses()) {
             addressService.saveAddressForUser(addressDto, userInfo);
         }
 
-        for (CreatePhoneNumberDto phoneNumberDto : createUserInfoDto.getPhoneNumberDTOs()) {
+        for (CreatePhoneNumberDto phoneNumberDto : createUserInfoDto.getPhoneNumbers()) {
             phoneNumberService.savePhoneNumberForUser(phoneNumberDto, userInfo);
         }
 

@@ -60,16 +60,16 @@ public class UserInfoValidator implements Validator {
             errors.rejectValue("tajNumber", "taj.number.is.already.taken");
         }
         if (createUserInfoDto.getEmail() == null || createUserInfoDto.getEmail().isBlank()
-                && (createUserInfoDto.getPhoneNumberDTOs().isEmpty())) {
+                && (createUserInfoDto.getPhoneNumbers().isEmpty())) {
             errors.rejectValue("email", "email.is.invalid");
         }
         if (userService.checkEmailExists(createUserInfoDto.getEmail())) {
             errors.rejectValue("email", "email.is.already.exists");
         }
-        if (createUserInfoDto.getAddressDTOs().isEmpty()) {
+        if (createUserInfoDto.getAddresses().isEmpty()) {
             errors.rejectValue("address", "address.is.invalid");
         }
-        List<CreatePhoneNumberDto> phoneNumberDTOs = createUserInfoDto.getPhoneNumberDTOs();
+        List<CreatePhoneNumberDto> phoneNumberDTOs = createUserInfoDto.getPhoneNumbers();
         if (!phoneNumberDTOs.isEmpty()) {
             if (phoneNumberDTOs.stream().anyMatch(dto -> dto.getPhoneNumber() == null || dto.getPhoneNumber().isBlank())) {
                 errors.rejectValue("phoneNumberDTOs", "phone.number.is.invalid");

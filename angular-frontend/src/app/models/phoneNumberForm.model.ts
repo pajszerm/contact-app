@@ -1,3 +1,3 @@
 export interface PhoneNumberFormModel {
-  phoneNumber: String;
+  phoneNumber: string;
 }

@@ -2,13 +2,13 @@ import {PhoneNumberFormModel} from "./phoneNumberForm.model";
 import {AddressFormModel} from "./addressForm.model";
 
 export interface UserFormModel {
-  userName: String,
-  name: String,
-  mothersName: String,
-  email: String,
+  userName: string,
+  name: string,
+  mothersName: string,
+  email: string,
   birthDate: Date,
-  tajNumber: String,
-  taxNumber: String,
+  tajNumber: string,
+  taxNumber: string,
   phoneNumbers: PhoneNumberFormModel[],
   addresses: AddressFormModel[]
 }

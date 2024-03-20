@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
 import {Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
+import {UserFormModel} from "../../models/userForm.model";
 
 @Component({
   selector: 'app-user-form',
@@ -28,13 +29,14 @@ export class UserFormComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   saveUserForm() {
-    const data = this.userForm.value;
-    console.log(data);
-    this.userService.saveUserForm(data).subscribe({
+    const formData: UserFormModel = this.userForm.value;
+
+    console.log(formData);
+
+    this.userService.saveUserForm(formData).subscribe({
       next: value => {
       },
       error: err => {
@@ -42,9 +44,9 @@ export class UserFormComponent implements OnInit {
       },
       complete: () => {
         this.userForm.reset();
-        this.router.navigate(['user-list'])
+        this.router.navigate(['user-list']);
       }
-    })
+    });
   }
 
   addPhoneNumber() {
