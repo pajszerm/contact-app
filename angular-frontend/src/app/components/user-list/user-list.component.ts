@@ -57,8 +57,17 @@ export class UserListComponent implements OnInit {
 
   deleteUserDetails(username: string | undefined) {
     this.userService.deleteUserDetails(username).subscribe({
-      next: () => this.router.navigate(['user-list']),
+      next: () => {},
       error: (err) => console.warn(err),
+      complete: () => {
+        this.closeEditModal()
+        const event: PageEvent = {
+          pageSize: this.pageSize,
+          pageIndex: this.pageIndex,
+          length: this.length
+        };
+        this.handlePageEvent(event);
+      }
     })
   }
 }

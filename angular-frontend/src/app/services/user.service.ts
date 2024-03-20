@@ -26,6 +26,6 @@ export class UserService {
   }
 
   deleteUserDetails(username: string | undefined): Observable<void> {
-    return this.http.delete<void>(`${BASE_URL}/delete/${username}`);
+    return this.http.delete<void>(`${BASE_URL}/deleteContact/${username}`);
   }
 }

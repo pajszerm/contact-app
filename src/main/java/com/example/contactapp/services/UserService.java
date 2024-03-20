@@ -40,7 +40,7 @@ public class UserService {
     }
 
     public boolean checkUserNameExists(String username) {
-        UserInfo userToFind = userRepository.findUserInfoByUsername(username);
+        UserInfo userToFind = userRepository.findUserByUsername(username);
         return userToFind != null;
     }
 
@@ -153,5 +153,10 @@ public class UserService {
         response.setPageIndex(page);
         response.setPageSize(size);
         return response;
+    }
+
+    public void deleteUserInfo(String username) {
+        UserInfo userToDelete = userRepository.findUserByUsername(username);
+        userRepository.delete(userToDelete);
     }
 }

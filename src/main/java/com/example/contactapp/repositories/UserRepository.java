@@ -1,7 +1,6 @@
 package com.example.contactapp.repositories;
 
 import com.example.contactapp.domain.UserInfo;
-import com.example.contactapp.domain.dto.outgoing.UserDetails;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Repository;
 public interface UserRepository extends JpaRepository<UserInfo, Long> {
 
     @Query("SELECT u FROM UserInfo u WHERE u.username = :username")
-    UserInfo findUserInfoByUsername(@Param("username") String username);
+    UserInfo findUserByUsername(@Param("username") String username);
 
     @Query("SELECT u FROM UserInfo u WHERE u.email = :email")
     UserInfo findUserByEmail(@Param("email") String email);

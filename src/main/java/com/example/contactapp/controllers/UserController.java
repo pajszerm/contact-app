@@ -40,4 +40,10 @@ public class UserController {
     public ResponseEntity<UserDetailsResponse> getAllContacts(@RequestParam int page, @RequestParam int size) {
         return new ResponseEntity<>(userService.getAllUserDetails(page, size), HttpStatus.OK);
     }
+
+    @DeleteMapping("/deleteContact/{username}")
+    public ResponseEntity<Void> deleteContact(@PathVariable("username") String username) {
+        userService.deleteUserInfo(username);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
