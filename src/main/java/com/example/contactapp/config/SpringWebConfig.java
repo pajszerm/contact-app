@@ -1,4 +1,4 @@
-package com.example.contactapp;
+package com.example.contactapp.config;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
