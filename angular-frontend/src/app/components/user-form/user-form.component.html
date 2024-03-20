@@ -165,7 +165,7 @@
 
       <small *ngIf="userForm.get('tajNumber')?.invalid && userForm.get('tajNumber')?.touched
       && !userForm.get('tajNumber')?.errors?.['serverError']" class="text-danger">
-        Please enter your TAJ number!
+        Please add your 9 digit TAJ number!
       </small>
 
       <small *ngIf="userForm.get('tajNumber')?.errors?.['serverError']" class="text-danger">
@@ -194,7 +194,7 @@
 
       <small *ngIf="userForm.get('taxNumber')?.invalid && userForm.get('taxNumber')?.touched
       && !userForm.get('taxNumber')?.errors?.['serverError']" class="text-danger">
-        Please enter your TAX number!
+        Please add your 8 digit TAJ number!
       </small>
 
       <small *ngIf="userForm.get('taxNumber')?.errors?.['serverError']" class="text-danger">
@@ -205,9 +205,19 @@
 
     <div formArrayName="phoneNumbers">
       <div *ngFor="let phoneNumber of phoneNumbers; let i=index" class="mb-3" [formGroupName]="i">
-        <label class="form-label">Phone Number {{ i + 1 }}:</label>
-        <input class="form-control mb-3" formControlName="phoneNumber">
+        <label
+          [ngClass]="{'text-danger': phoneNumber.get('phoneNumber')?.invalid && phoneNumber.get('phoneNumber')?.touched}"
+          class="form-label">Phone Number {{ i + 1 }}:</label>
+        <input
+          [ngClass]="{'form-control': true, 'mb-3': true, 'is-invalid': phoneNumber.get('phoneNumber')?.invalid
+          && phoneNumber.get('phoneNumber')?.touched}"
+          class="form-control mb-3" formControlName="phoneNumber">
+        <small *ngIf="phoneNumber.get('phoneNumber')?.invalid && phoneNumber.get('phoneNumber')?.touched" class="text-danger">
+          Please enter a valid phone number!
+        </small>
+        <div>
         <button type="button" class="btn btn-danger" (click)="removePhoneNumber(i)">Remove</button>
+        </div>
       </div>
     </div>
     <button type="button" class="btn btn-secondary mb-3" (click)="addPhoneNumber()">Add Phone Number</button>
@@ -292,7 +302,7 @@
 
           <small *ngIf="address.get('postalCode')?.invalid && address.get('postalCode')?.touched
               && !address.get('postalCode')?.errors?.['serverError']" class="text-danger">
-            Please enter a valid postal code!
+            Please enter your 4 digit postal code!
           </small>
           <small *ngIf="address.get('postalCode')?.errors?.['serverError']" class="text-danger">
             {{address.get('postalCode')?.errors?.['serverError']}}
