@@ -1,12 +1,12 @@
 import {FormGroup} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
 
-export function validationHandler(error: any, form: FormGroup) {
-  if (error instanceof HttpErrorResponse && (error.status === 400 || error.status === 401)) {
-    for (const errorFromServer of error.error.fieldErrors) {
-      const formControl = form.get(errorFromServer.field)
+export function handleValidationErrors(error: Error, form: FormGroup) {
+  if (error instanceof HttpErrorResponse && error.status === 400 && error.error?.fieldErrors) {
+    for (const validationError of error.error.fieldErrors) {
+      const formControl = form.get(validationError.field);
       if (formControl) {
-        formControl.setErrors({serverError: errorFromServer.message})
+        formControl.setErrors({serverError: validationError.message});
       }
     }
   }
