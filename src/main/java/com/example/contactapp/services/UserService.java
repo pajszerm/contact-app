@@ -68,7 +68,11 @@ public class UserService {
         userInfo.setName(createUserInfoDto.getName());
         userInfo.setUsername(createUserInfoDto.getUsername());
         userInfo.setMothersName(createUserInfoDto.getMothersName());
-        userInfo.setEmail(createUserInfoDto.getEmail());
+        if (createUserInfoDto.getEmail().isBlank()) {
+            userInfo.setEmail(null);
+        } else {
+            userInfo.setEmail(createUserInfoDto.getEmail());
+        }
         userInfo.setBirthDate(createUserInfoDto.getBirthDate());
         userInfo.setTajNumber(createUserInfoDto.getTajNumber());
         userInfo.setTaxNumber(createUserInfoDto.getTaxNumber());
