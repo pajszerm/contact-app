@@ -66,11 +66,13 @@
         <div class="addresses">
           <h6 class="d-block">Addresses:</h6>
           <ng-container *ngIf="userDetailsModel && userDetailsModel.addresses">
-            <div *ngFor="let address of userDetailsModel.addresses" class="address border-bottom">
-              <p>City: {{ address.cityName }}</p>
-              <p>Street: {{ address.streetName }}</p>
-              <p>House number: {{ address.houseNumber }}</p>
-              <p>Postal code: {{ address.postalCode }}</p>
+            <div *ngFor="let address of userDetailsModel.addresses; let last = last">
+              <div class="address" [class.border-bottom]="!last">
+                <p>City: {{ address.cityName }}</p>
+                <p>Street: {{ address.streetName }}</p>
+                <p>House number: {{ address.houseNumber }}</p>
+                <p>Postal code: {{ address.postalCode }}</p>
+              </div>
             </div>
           </ng-container>
         </div>

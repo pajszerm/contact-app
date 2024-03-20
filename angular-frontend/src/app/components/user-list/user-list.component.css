@@ -3,3 +3,12 @@
   padding: 10px;
   margin-bottom: 10px;
 }
+
+.address {
+  padding-bottom: 10px;
+}
+
+.address.border-bottom {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 10px;
+}

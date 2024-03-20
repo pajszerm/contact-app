@@ -120,7 +120,7 @@ export class UserFormComponent implements OnInit {
   phoneNumberValidator(maxLength: number = 15): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       const value = control.value;
-      const isValid = /^\d{1,15}$/.test(value); // Check if value contains only numbers and length is at most 15
+      const isValid = /^\d{1,15}$/.test(value);
 
       return isValid ? null : {'invalidNumber': {value}};
     };
