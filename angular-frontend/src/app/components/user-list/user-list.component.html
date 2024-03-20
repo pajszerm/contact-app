@@ -11,8 +11,14 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-
+    <tr *ngFor="let user of users">
+      <td class="text-center">{{user.username}}</td>
+      <td class="text-center">{{user.name}}</td>
+      <td class="text-center">
+        <button class="btn btn-secondary" (click)="openUserDetailsModal(user)">View</button>
+      </td>
+      <td class="text-center">{{user.addresses.length}}</td>
+      <td class="text-center">{{user.phoneNumbers.length}}</td>
     </tr>
     </tbody>
   </table>
@@ -26,5 +32,52 @@
       (page)="handlePageEvent($event)"
       class="custom-paginator">
     </mat-paginator>
+  </div>
+</div>
+
+
+<div class="modal" tabindex="-1" id="detailsModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Personal data of {{userDetailsModel?.name}}</h5>
+        <button type="button" class="btn-close" (click)="closeEditModal()" data-bs-dismiss="modal"
+                aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="personal-details">
+          <h6>Personal details:</h6>
+          <p class="d-block">Mother's name: {{userDetailsModel?.mothersName}}</p>
+          <p class="d-block">Birth-date: {{userDetailsModel?.birthDate}}</p>
+          <p class="d-block">TAJ number: {{userDetailsModel?.tajNumber}}</p>
+          <p class="d-block">Tax number: {{userDetailsModel?.taxNumber}}</p>
+        </div>
+        <div class="phone-numbers">
+          <h6 class="d-block">Phone numbers:</h6>
+          <div *ngIf="userDetailsModel && userDetailsModel.phoneNumbers && userDetailsModel.phoneNumbers.length > 0; else noPhoneNumbers">
+            <div *ngFor="let phoneNumber of userDetailsModel?.phoneNumbers" class="phone-number">
+              <p>{{phoneNumber.phoneNumber}}</p>
+            </div>
+          </div>
+          <ng-template #noPhoneNumbers>
+            <p>No phone numbers added</p>
+          </ng-template>
+        </div>
+        <div class="addresses">
+          <h6 class="d-block">Addresses:</h6>
+          <ng-container *ngIf="userDetailsModel && userDetailsModel.addresses">
+            <div *ngFor="let address of userDetailsModel.addresses" class="address border-bottom">
+              <p>City: {{ address.cityName }}</p>
+              <p>Street: {{ address.streetName }}</p>
+              <p>House number: {{ address.houseNumber }}</p>
+              <p>Postal code: {{ address.postalCode }}</p>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="deleteUserDetails(userDetailsModel?.username)">Delete contact</button>
+      </div>
+    </div>
   </div>
 </div>

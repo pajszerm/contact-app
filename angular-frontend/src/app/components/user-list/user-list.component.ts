@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PageEvent} from "@angular/material/paginator";
 import {UserDetailsModel} from "../../models/userDetails.model";
 import {UserService} from "../../services/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-list',
@@ -15,19 +16,49 @@ export class UserListComponent implements OnInit {
   pageIndex: number = 0;
   pageSize: number = 0;
   length: number = 0;
-  defaultPageEvent: PageEvent = {pageSize: 6, pageIndex: 0, length: 0};
+  defaultPageEvent: PageEvent = {pageSize: 3, pageIndex: 0, length: 0};
+  userDetailsModel?: UserDetailsModel;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+              private router: Router) {
+  }
 
   ngOnInit(): void {
-    this.getServerData(this.defaultPageEvent);
+    this.handlePageEvent(this.defaultPageEvent);
   }
 
-  handlePageEvent($event: PageEvent) {
-
+  handlePageEvent(event: PageEvent) {
+    this.userService.getUserDetails(event).subscribe({
+      next: (data) => {
+        this.users = data.users;
+        this.length = data.length;
+        this.pageIndex = data.pageIndex;
+        this.pageSize = data.pageSize;
+      },
+      error: err => console.warn(err),
+    })
+    return event;
   }
 
-  private getServerData(defaultPageEvent: PageEvent) {
+  openUserDetailsModal(user: UserDetailsModel) {
+    const modelDiv = document.getElementById('detailsModal');
+    this.userDetailsModel = user;
+    if (modelDiv != null) {
+      modelDiv.style.display = 'block';
+    }
+  }
 
+  closeEditModal() {
+    const modelDiv = document.getElementById('detailsModal');
+    if (modelDiv != null) {
+      modelDiv.style.display = 'none';
+    }
+  }
+
+  deleteUserDetails(username: string | undefined) {
+    this.userService.deleteUserDetails(username).subscribe({
+      next: () => this.router.navigate(['user-list']),
+      error: (err) => console.warn(err),
+    })
   }
 }
