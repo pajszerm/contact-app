@@ -57,7 +57,7 @@ public class UserInfoValidator implements Validator {
             errors.rejectValue("taxNumber", "tax.number.is.invalid");
         }
         if (userService.checkTaxNumberExists(createUserInfoDto.getTaxNumber())) {
-            errors.rejectValue("tajNumber", "taj.number.is.already.taken");
+            errors.rejectValue("taxNumber", "tax.number.is.already.taken");
         }
         if (createUserInfoDto.getEmail() == null || createUserInfoDto.getEmail().isBlank()
                 && (createUserInfoDto.getPhoneNumbers().isEmpty())) {
@@ -72,10 +72,10 @@ public class UserInfoValidator implements Validator {
         List<CreatePhoneNumberDto> phoneNumberDTOs = createUserInfoDto.getPhoneNumbers();
         if (!phoneNumberDTOs.isEmpty()) {
             if (phoneNumberDTOs.stream().anyMatch(dto -> dto.getPhoneNumber() == null || dto.getPhoneNumber().isBlank())) {
-                errors.rejectValue("phoneNumberDTOs", "phone.number.is.invalid");
+                errors.rejectValue("phoneNumber", "phone.number.is.invalid");
             } else {
                 if (phoneNumberService.checkPhoneNumbersExist(phoneNumberDTOs)) {
-                    errors.rejectValue("phoneNumberDTOs", "phone.number.is.already.exists");
+                    errors.rejectValue("phoneNumber", "phone.number.is.already.exists");
                 }
             }
         }
