@@ -8,6 +8,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -16,12 +18,14 @@ import {HttpClientModule} from "@angular/common/http";
     NavbarComponent,
     UserListComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        NoopAnimationsModule,
+        MatPaginatorModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
