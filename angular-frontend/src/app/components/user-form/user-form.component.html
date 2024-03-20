@@ -3,106 +3,204 @@
   <form (ngSubmit)="saveUserForm()" [formGroup]="userForm">
     <div class="mb-3">
       <label
+        [ngClass]="{'text-danger': (userForm.get('username')?.invalid && userForm.get('username')?.touched)
+         || (userForm.get('username')?.errors?.['serverError'])}"
         class="form-label"
         for="username"
       >Username:</label>
 
       <input
+        [ngClass]="{'is-invalid': (userForm.get('username')?.invalid && userForm.get('username')?.touched)
+         || (userForm.get('username')?.errors?.['serverError'])}"
         class="form-control"
         formControlName="username"
         id="username"
         placeholder="Username"
         type="text"
       >
+
+      <small *ngIf="userForm.get('username')?.invalid && userForm.get('username')?.touched
+      && !userForm.get('username')?.errors?.['serverError']" class="text-danger">
+        Please enter a valid username!!
+      </small>
+
+      <small *ngIf="userForm.get('username')?.errors?.['serverError']" class="text-danger">
+        {{userForm.get('username')?.errors?.['serverError']}}
+      </small>
+
     </div>
 
     <div class="mb-3">
       <label
+        [ngClass]="{'text-danger': (userForm.get('name')?.invalid && userForm.get('name')?.touched)
+         || (userForm.get('name')?.errors?.['serverError'])}"
         class="form-label"
         for="name"
       >Name:</label>
 
       <input
+        [ngClass]="{'is-invalid': (userForm.get('name')?.invalid && userForm.get('name')?.touched)
+         || (userForm.get('name')?.errors?.['serverError'])}"
         class="form-control"
         formControlName="name"
         id="name"
-        placeholder="Username"
+        placeholder="Name"
         type="text"
       >
+
+      <small *ngIf="userForm.get('name')?.invalid && userForm.get('name')?.touched
+      && !userForm.get('name')?.errors?.['serverError']" class="text-danger">
+        Please enter a valid name!
+      </small>
+
+      <small *ngIf="userForm.get('name')?.errors?.['serverError']" class="text-danger">
+        {{userForm.get('name')?.errors?.['serverError']}}
+      </small>
+
     </div>
     <div class="mb-3">
       <label
+        [ngClass]="{'text-danger': (userForm.get('mothersName')?.invalid && userForm.get('mothersName')?.touched)
+         || (userForm.get('mothersName')?.errors?.['serverError'])}"
         class="form-label"
         for="mothersName"
       >Mother's name:</label>
 
       <input
+        [ngClass]="{'is-invalid': (userForm.get('mothersName')?.invalid && userForm.get('mothersName')?.touched)
+         || (userForm.get('mothersName')?.errors?.['serverError'])}"
         class="form-control"
         formControlName="mothersName"
         id="mothersName"
         placeholder="Mother's name"
         type="text"
       >
+
+      <small *ngIf="userForm.get('mothersName')?.invalid && userForm.get('mothersName')?.touched
+      && !userForm.get('mothersName')?.errors?.['serverError']" class="text-danger">
+        Please enter your mother's name!
+      </small>
+
+      <small *ngIf="userForm.get('mothersName')?.errors?.['serverError']" class="text-danger">
+        {{userForm.get('mothersName')?.errors?.['serverError']}}
+      </small>
+
     </div>
 
     <div class="mb-3">
       <label
+        [ngClass]="{'text-danger': (userForm.get('email')?.invalid && userForm.get('email')?.touched)
+         || (userForm.get('email')?.errors?.['serverError'])}"
         class="form-label"
         for="email"
       >E-mail address:</label>
 
       <input
+        [ngClass]="{'is-invalid': (userForm.get('email')?.invalid && userForm.get('email')?.touched)
+         || (userForm.get('email')?.errors?.['serverError'])}"
         class="form-control"
         formControlName="email"
         id="email"
         placeholder="E-mail address"
         type="text"
       >
+
+      <small *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched
+      && !userForm.get('email')?.errors?.['serverError']" class="text-danger">
+        Please enter your e-mail!
+      </small>
+
+      <small *ngIf="userForm.get('email')?.errors?.['serverError']" class="text-danger">
+        {{userForm.get('email')?.errors?.['serverError']}}
+      </small>
+
     </div>
 
     <div class="mb-3">
       <label
+        [ngClass]="{'text-danger': (userForm.get('birthDate')?.invalid && userForm.get('birthDate')?.touched)
+         || (userForm.get('birthDate')?.errors?.['serverError'])}"
         class="form-label"
         for="birthDate"
       >Birth date:</label>
 
       <input
+        [ngClass]="{'is-invalid': (userForm.get('birthDate')?.invalid && userForm.get('birthDate')?.touched)
+         || (userForm.get('birthDate')?.errors?.['serverError'])}"
         class="form-control"
         formControlName="birthDate"
         id="birthDate"
-        placeholder="E-mail address"
+        placeholder="YYYY/MM/DD"
         type="date"
       >
+
+      <small *ngIf="userForm.get('birthDate')?.invalid && userForm.get('birthDate')?.touched
+      && !userForm.get('birthDate')?.errors?.['serverError']" class="text-danger">
+        Please enter your birth date!
+      </small>
+
+      <small *ngIf="userForm.get('birthDate')?.errors?.['serverError']" class="text-danger">
+        {{userForm.get('birthDate')?.errors?.['serverError']}}
+      </small>
+
     </div>
 
     <div class="mb-3">
       <label
+        [ngClass]="{'text-danger': (userForm.get('tajNumber')?.invalid && userForm.get('tajNumber')?.touched)
+         || (userForm.get('tajNumber')?.errors?.['serverError'])}"
         class="form-label"
         for="tajNumber"
       >TAJ number:</label>
 
       <input
+        [ngClass]="{'is-invalid': (userForm.get('tajNumber')?.invalid && userForm.get('tajNumber')?.touched)
+         || (userForm.get('tajNumber')?.errors?.['serverError'])}"
         class="form-control"
         formControlName="tajNumber"
         id="tajNumber"
         placeholder="TAJ number"
         type="text"
       >
+
+      <small *ngIf="userForm.get('tajNumber')?.invalid && userForm.get('tajNumber')?.touched
+      && !userForm.get('tajNumber')?.errors?.['serverError']" class="text-danger">
+        Please enter your TAJ number!
+      </small>
+
+      <small *ngIf="userForm.get('tajNumber')?.errors?.['serverError']" class="text-danger">
+        {{userForm.get('tajNumber')?.errors?.['serverError']}}
+      </small>
+
     </div>
 
     <div class="mb-3">
       <label
+        [ngClass]="{'text-danger': (userForm.get('taxNumber')?.invalid && userForm.get('taxNumber')?.touched)
+         || (userForm.get('taxNumber')?.errors?.['serverError'])}"
         class="form-label"
         for="taxNumber"
       >Tax number:</label>
 
       <input
+        [ngClass]="{'is-invalid': (userForm.get('taxNumber')?.invalid && userForm.get('taxNumber')?.touched)
+         || (userForm.get('taxNumber')?.errors?.['serverError'])}"
         class="form-control"
         formControlName="taxNumber"
         id="taxNumber"
         placeholder="Tax number"
         type="text"
       >
+
+      <small *ngIf="userForm.get('taxNumber')?.invalid && userForm.get('taxNumber')?.touched
+      && !userForm.get('taxNumber')?.errors?.['serverError']" class="text-danger">
+        Please enter your TAX number!
+      </small>
+
+      <small *ngIf="userForm.get('taxNumber')?.errors?.['serverError']" class="text-danger">
+        {{userForm.get('taxNumber')?.errors?.['serverError']}}
+      </small>
+
     </div>
 
     <div formArrayName="phoneNumbers">
@@ -116,29 +214,97 @@
 
     <div formArrayName="addresses" class="mb-3">
       <div *ngFor="let address of addresses; let i=index" class="mb-3" [formGroupName]="i">
+
         <h4>Address {{ i + 1 }}:</h4>
+
         <div class="mb-3">
-          <label class="form-label">City:</label>
-          <input class="form-control" formControlName="cityName">
+          <label
+            [ngClass]="{'text-danger': (address.get('cityName')?.invalid && address.get('cityName')?.touched)
+              || (address.get('cityName')?.errors?.['serverError'])}"
+            class="form-label">City:
+          </label>
+          <input
+            [ngClass]="{'is-invalid': (address.get('cityName')?.invalid && address.get('cityName')?.touched)
+              || (address.get('cityName')?.errors?.['serverError'])}"
+            class="form-control" formControlName="cityName">
+
+          <small *ngIf="address.get('cityName')?.invalid && address.get('cityName')?.touched
+              && !address.get('cityName')?.errors?.['serverError']" class="text-danger">
+            Please enter a valid city!
+          </small>
+          <small *ngIf="address.get('cityName')?.errors?.['serverError']" class="text-danger">
+            {{address.get('cityName')?.errors?.['serverError']}}
+          </small>
         </div>
+
         <div class="mb-3">
-          <label class="form-label">Street:</label>
-          <input class="form-control" formControlName="streetName">
+          <label
+            [ngClass]="{'text-danger': (address.get('streetName')?.invalid && address.get('streetName')?.touched)
+              || (address.get('streetName')?.errors?.['serverError'])}"
+            class="form-label">Street:
+          </label>
+          <input
+            [ngClass]="{'is-invalid': (address.get('streetName')?.invalid && address.get('streetName')?.touched)
+              || (address.get('streetName')?.errors?.['serverError'])}"
+            class="form-control" formControlName="streetName">
+
+          <small *ngIf="address.get('streetName')?.invalid && address.get('streetName')?.touched
+              && !address.get('streetName')?.errors?.['serverError']" class="text-danger">
+            Please enter a valid street!
+          </small>
+          <small *ngIf="address.get('streetName')?.errors?.['serverError']" class="text-danger">
+            {{address.get('streetName')?.errors?.['serverError']}}
+          </small>
         </div>
+
         <div class="mb-3">
-          <label class="form-label">House number:</label>
-          <input class="form-control" formControlName="houseNumber">
+          <label
+            [ngClass]="{'text-danger': (address.get('houseNumber')?.invalid && address.get('houseNumber')?.touched)
+              || (address.get('houseNumber')?.errors?.['serverError'])}"
+            class="form-label">
+            House number:
+          </label>
+          <input
+            [ngClass]="{'is-invalid': (address.get('houseNumber')?.invalid && address.get('houseNumber')?.touched)
+              || (address.get('houseNumber')?.errors?.['serverError'])}"
+            class="form-control" formControlName="houseNumber">
+
+          <small *ngIf="address.get('houseNumber')?.invalid && address.get('houseNumber')?.touched
+              && !address.get('houseNumber')?.errors?.['serverError']" class="text-danger">
+            Please enter a house number!
+          </small>
+          <small *ngIf="address.get('houseNumber')?.errors?.['serverError']" class="text-danger">
+            {{address.get('houseNumber')?.errors?.['serverError']}}
+          </small>
         </div>
+
         <div class="mb-3">
-          <label class="form-label">Postal code:</label>
-          <input class="form-control" formControlName="postalCode">
+          <label
+            [ngClass]="{'text-danger': (address.get('postalCode')?.invalid && address.get('postalCode')?.touched)
+              || (address.get('postalCode')?.errors?.['serverError'])}"
+            class="form-label">
+            Postal code:
+          </label>
+          <input
+            [ngClass]="{'is-invalid': (address.get('postalCode')?.invalid && address.get('postalCode')?.touched)
+              || (address.get('postalCode')?.errors?.['serverError'])}"
+            class="form-control" formControlName="postalCode">
+
+          <small *ngIf="address.get('postalCode')?.invalid && address.get('postalCode')?.touched
+              && !address.get('postalCode')?.errors?.['serverError']" class="text-danger">
+            Please enter a valid postal code!
+          </small>
+          <small *ngIf="address.get('postalCode')?.errors?.['serverError']" class="text-danger">
+            {{address.get('postalCode')?.errors?.['serverError']}}
+          </small>
         </div>
+
         <button type="button" class="btn btn-danger mb-3" (click)="removeAddress(i)">Remove</button>
       </div>
     </div>
     <button type="button" class="btn btn-secondary mb-3" (click)="addAddress()">Add Address</button>
     <div>
-    <button [disabled]="userForm.invalid" class="btn btn-primary" type="submit">Submit</button>
+      <button [disabled]="userForm.invalid || !hasAddress()" class="btn btn-primary" type="submit">Submit</button>
     </div>
   </form>
 </div>

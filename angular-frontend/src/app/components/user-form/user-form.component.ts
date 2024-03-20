@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup} from "@angular/forms";
+import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
 import {UserFormModel} from "../../models/userForm.model";
+import {handleValidationErrors} from "../../utils/validation-handler";
+
 
 @Component({
   selector: 'app-user-form',
@@ -17,13 +19,13 @@ export class UserFormComponent implements OnInit {
               private router: Router,
               private userService: UserService) {
     this.userForm = formBuilder.group({
-      username: [''],
-      name: [''],
-      mothersName: [''],
+      username: ['', Validators.required],
+      name: ['', Validators.required],
+      mothersName: ['', Validators.required],
       email: [''],
-      birthDate: [null],
-      tajNumber: [''],
-      taxNumber: [''],
+      birthDate: [null, Validators.required],
+      tajNumber: ['', Validators.required],
+      taxNumber: ['', Validators.required],
       phoneNumbers: this.formBuilder.array([]),
       addresses: this.formBuilder.array([])
     })
@@ -33,15 +35,10 @@ export class UserFormComponent implements OnInit {
 
   saveUserForm() {
     const formData: UserFormModel = this.userForm.value;
-
-    console.log(formData);
-
     this.userService.saveUserForm(formData).subscribe({
       next: value => {
       },
-      error: err => {
-        console.warn(err);
-      },
+      error: err => handleValidationErrors(err, this.userForm),
       complete: () => {
         this.userForm.reset();
         this.router.navigate(['user-list']);
@@ -51,16 +48,16 @@ export class UserFormComponent implements OnInit {
 
   addPhoneNumber() {
     (this.userForm.get('phoneNumbers') as FormArray).push(this.formBuilder.group({
-      phoneNumber: ['']
+      phoneNumber: ['', Validators.required]
     }));
   }
 
   addAddress() {
     (this.userForm.get('addresses') as FormArray).push(this.formBuilder.group({
-      cityName: [''],
-      streetName: [''],
-      houseNumber: [''],
-      postalCode: ['']
+      cityName: ['', Validators.required],
+      streetName: ['', Validators.required],
+      houseNumber: ['', Validators.required],
+      postalCode: ['', Validators.required]
     }));
   }
 
@@ -78,5 +75,10 @@ export class UserFormComponent implements OnInit {
 
   get addresses() {
     return (this.userForm.get('addresses') as FormArray).controls;
+  }
+
+  hasAddress(): boolean {
+    const addresses = this.userForm.get('addresses') as FormArray;
+    return addresses.length > 0;
   }
 }
