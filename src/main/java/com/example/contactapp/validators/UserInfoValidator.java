@@ -57,7 +57,7 @@ public class UserInfoValidator implements Validator {
             errors.rejectValue("taxNumber", "tax.number.is.invalid");
         }
         if (userService.checkTaxNumberExists(createUserInfoDto.getTaxNumber())) {
-            errors.rejectValue("taxNumber", "tax.number.is.already.taken");
+            errors.rejectValue("taxNumber", "tax.number.is.already.exists");
         }
         if (createUserInfoDto.getEmail() == null || createUserInfoDto.getEmail().isBlank()
                 && (createUserInfoDto.getPhoneNumbers().isEmpty())) {
