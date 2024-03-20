@@ -1,6 +1,9 @@
 package com.example.contactapp.repositories;
 
 import com.example.contactapp.domain.UserInfo;
+import com.example.contactapp.domain.dto.outgoing.UserDetails;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -20,4 +23,7 @@ public interface UserRepository extends JpaRepository<UserInfo, Long> {
 
     @Query("SELECT u FROM UserInfo u WHERE u.taxNumber = :taxNumber")
     UserInfo findUserByTaxNumber(@Param("taxNumber") String taxNumber);
+
+    @Query("SELECT u FROM UserInfo u")
+    Page<UserInfo> findAllUsers(PageRequest pageRequest);
 }

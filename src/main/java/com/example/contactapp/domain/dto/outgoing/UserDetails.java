@@ -24,4 +24,6 @@ public class UserDetails {
     private String email;
 
     private List<PhoneNumberDetails> phoneNumbers;
+
+    private List<AddressDetails> addresses;
 }
