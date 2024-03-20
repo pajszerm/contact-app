@@ -77,7 +77,7 @@ Used technologies:
 
 In the given period I cloud only create the functionalities mentioned above, but I have plans to continue the development.
 
-- Implement security with JWT token. It self-contained and carry all the necessary information, which eliminates the need for a server-side session store.
+- Implement security with JWT token. It is self-contained and carries all the necessary information, which eliminates the need for a server-side session store.
 - Create a User class, that people can use for registration and login. It would contain the already created UserInfo classes as contacts.
 - Create unit tests and integration tests, to ensure ensure flawless operation.
 - Expand the validation on backend and frontend.
