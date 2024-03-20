@@ -1,1 +1,30 @@
-<p>user-list works!</p>
+<div class="container w-100 shadow my-3 p-5 rounded">
+  <table class="table">
+    <caption>List of users</caption>
+    <thead>
+    <tr>
+      <th scope="col" class="text-center">Username</th>
+      <th scope="col" class="text-center">Name</th>
+      <th scope="col" class="text-center">Personal data</th>
+      <th scope="col" class="text-center">Addresses</th>
+      <th scope="col" class="text-center">Phone numbers</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+
+    </tr>
+    </tbody>
+  </table>
+  <div class="w-100 mt-3 d-flex justify-content-center">
+    <mat-paginator
+      [pageSizeOptions]="pageSizeOptions"
+      showFirstLastButtons
+      [pageSize]="pageSize"
+      [pageIndex]="pageIndex"
+      [length]="length"
+      (page)="handlePageEvent($event)"
+      class="custom-paginator">
+    </mat-paginator>
+  </div>
+</div>
